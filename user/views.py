@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from .forms import *
 
@@ -20,5 +20,8 @@ def signup(request):
                 'lf':lf,
                 'error':None
             })
+
+
 def page(request, uid):
-    return render(request,'user/page.html', {"id":uid})
+    user = get_object_or_404(BlogUser, nickname=uid)
+    return render(request,'user/page.html', {"user":user})
