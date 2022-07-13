@@ -1,5 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from blog.models import Post
+from .models import BlogUser
 from .forms import *
 
 # Create your views here.
@@ -24,4 +26,9 @@ def signup(request):
 
 def page(request, uid):
     user = get_object_or_404(BlogUser, nickname=uid)
-    return render(request,'user/page.html', {"user":user})
+    all_posts = Post.objects.filter(author_id=user.id).order_by("date")
+    return render(request,'user/page.html', {"user":user, "posts":all_posts})
+
+def np(request, unc):
+    user = get_object_or_404(BlogUser, nickname=unc)
+    return render(request,'user/new_post.html', {"user":user})

@@ -11,6 +11,9 @@ class NewUserForm(forms.ModelForm):
     password = forms.CharField(max_length=255, label="",
     widget=forms.PasswordInput(attrs={'name':'pw','placeholder': 'password', 'class':'appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500'})
     )
+    image = forms.ImageField(label="",
+    widget=forms.PasswordInput(attrs={'name':'img'})
+    )
 
     class Meta:
         model = BlogUser

@@ -10,8 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 from django.core.management.commands.runserver import Command as runserver
+from sys import platform
 runserver.default_port = "8000"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -129,6 +131,8 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static/',
 ]
+MEDIA_ROOT =  BASE_DIR / 'uploads/'
+MEDIA_URL = 'uploads'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -137,5 +141,6 @@ TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
-# NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
-NPM_BIN_PATH = r"/usr/bin/npm"
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+if platform in ("linux","linux2"):
+    NPM_BIN_PATH = r"/usr/bin/npm"
