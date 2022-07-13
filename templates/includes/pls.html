@@ -1,0 +1,30 @@
+{% load static %}
+
+<li>
+    <article class="post">
+        <a href="{% url 'post-detail' slug=post.slug %}">
+            <div class="post_content">
+                <h3>{{ post.title|title }}</h3>
+                <p>{{ post.short_desc }}</p>
+            </div>
+            <img src="{% static 'blog/images/'|add:post.image %}" alt="{{ post.title }}">
+        </a>
+        by <strong>{{ post.title.nickname }}</strong> at <time>  </time>
+    </article>
+{#    <hr>#}
+</li>
+<style>
+    li{
+        width: 90%;
+        box-shadow: -2px 2px #000000;
+
+        {#border: 1px solid black;#}
+     }
+    article{
+        width: 100%;
+     }
+    a {
+    border-radius: 11px;
+    margin-bottom: 10px;
+     }
+</style>

@@ -1,0 +1,33 @@
+{% extends '_layout.html' %}
+{% load static %}
+{% block title %}
+    BGOPC Blog
+{% endblock title %}
+{% block styles %}
+    <link rel="stylesheet" href='{% static 'blog/index.css' %}'>
+{% endblock styles %}
+{% block content %}
+    <section id="welcome">
+     <header><img src="{% static 'blog/images/BGOPC.jpeg' %}" alt="BGOPC, Author of this Blog"></header>
+    <h2>BGOPC Blog Project</h2>
+    <p>Hey I'm BGOPC. <br>
+    In this Weblog people write their own stories and share them
+        <br><br>
+    </p>
+    </section>
+    <section id="latest-posts">
+    <h2 class="text-center">Latest Post of My Blog</h2>
+        <ul class="border">
+            {% for post in posts %}
+                {% include 'includes/pls.html' %}
+            {% endfor %}
+        </ul>
+    </section>
+    <section id="about">
+        <h3>Who Am I??</h3>
+        <p>I'm BGOPC, A Junior Web Developer with 1.5 year experience in web development born in 2009</p>
+    </section>
+{% endblock content %}
+{% block Scripts %}
+    <script src="{% static 'blog/index.js' %}"></script>
+{% endblock Scripts %}

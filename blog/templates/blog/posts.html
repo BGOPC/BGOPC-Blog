@@ -1,0 +1,27 @@
+{% extends '_layout.html' %}
+{% load static %}
+{% block title %}
+Posts
+{% endblock title %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'blog/posts.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/index.css' %}">
+{% endblock styles %}
+
+{% block content %}
+    <section id="all-posts">
+        <h1 class="top-1 text-center">Posts</h1>
+        <br><br><br><br><br>
+        <ul>
+            {% for post in posts %}
+                {% include 'includes/pls.html' %}
+            {% endfor %}
+
+        </ul>
+    </section>
+{% endblock content %}
+
+{% block Scripts %}
+    <script src="{% static 'blog/index.js' %}"> </script>
+{% endblock %}
