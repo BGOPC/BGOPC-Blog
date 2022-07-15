@@ -1,1 +1,14 @@
 {% extends '_layout.html' %}
+{% load static %}
+{% block Scripts %}
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor-init.js' %}"></script>
+<script type="text/javascript" src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+New Post
+{% endblock %}
+
+{% block content %}
+{# Author: {{ author.nickname }} #}
+{% endblock %}

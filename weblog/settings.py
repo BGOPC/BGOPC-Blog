@@ -14,11 +14,11 @@ import os
 from pathlib import Path
 from django.core.management.commands.runserver import Command as runserver
 from sys import platform
+
 runserver.default_port = "8000"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -31,7 +31,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,11 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'user',
     'tailwind',
     'theme',
     'copyright',
-    'user',
     'django_browser_reload',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -60,13 +60,21 @@ MIDDLEWARE = [
     "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.ScryptPasswordHasher',
+]
+
 ROOT_URLCONF = 'weblog.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,7 +89,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'weblog.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -91,7 +98,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -111,7 +117,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -123,16 +128,16 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'static/'
 STATICFILES_DIRS = [
-    BASE_DIR / 'static/',
+    # BASE_DIR / 'static/',
 ]
-MEDIA_ROOT =  BASE_DIR / 'uploads/'
-MEDIA_URL = 'uploads'
+MEDIA_ROOT = BASE_DIR / 'files'
+MEDIA_URL = 'files/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -141,6 +146,8 @@ TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+CKEDITOR_UPLOAD_PATH = "ckeditor/"
+
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
-if platform in ("linux","linux2"):
+if platform in ("linux", "linux2"):
     NPM_BIN_PATH = r"/usr/bin/npm"
