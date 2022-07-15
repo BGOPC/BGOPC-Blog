@@ -9,5 +9,5 @@ urlpatterns = [
     path('signup/', views.SignupView.as_view()),
     # path('user/<uid>', views.page, name='profile-page'),
     path('user/<str:uid>', views.PageView.as_view(), name='profile-page'),
-    path('upload/<unc>', views.NpView.as_view(), name='new-post'),
+    path('upload/', views.NpView.as_view(), name='new-post'),
 ]

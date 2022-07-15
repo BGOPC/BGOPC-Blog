@@ -1,11 +1,10 @@
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.views import View
 from django.views.generic.base import TemplateView
 
-from blog.models import Post
 from .forms import *
-
 
 
 # Create your views here.
@@ -50,10 +49,23 @@ class PageView(TemplateView):
 
 
 class NpView(View):
-    def get(self, request, unc):
-        user = get_object_or_404(BlogUser, nickname=unc)
-        return render(request, 'user/new_post.html', {"user": user})
+    def get(self, request):
+        unc = request.session.get("unc", None)
+        if unc:
+            user = get_object_or_404(BlogUser, nickname=unc)
+            return render(request, 'user/new_post.html', {"user": user, "form": NewPostForm()})
+        res = HttpResponse("Client Unauthorized")
+        res.status_code = 401
+        return res
 
-    def post(self, request, unc):
-        user = get_object_or_404(BlogUser, nickname=unc)
-        return render(request, 'user/new_post.html', {"user": user})
+    def post(self, request):
+        unc = request.session.get("unc", None)
+        if unc and BlogUser.objects.filter(nickname=unc).exists():
+            Postform = NewPostForm(request.POST, request.FILES)
+            if Postform.is_valid():
+                NewPost: Post = Postform.save()
+                return redirect(reverse("post-detail", kwargs={"slug": NewPost.slug}))
+            user = get_object_or_404(BlogUser, nickname=unc)
+            return render(request, 'user/new_post.html', {"user": user, "form": Postform})
+
+        return HttpResponse("Client Unauthorized", status=401)
