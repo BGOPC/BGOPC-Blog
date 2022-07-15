@@ -4,13 +4,16 @@ from user.models import BlogUser
 
 
 # Create your models here.
+def up(instance, file):
+    _, ext = file.split('.')
+    return f"posts/{instance.title}.{ext}"
+
 
 class Post(models.Model):
     title = models.CharField(max_length=150)
-    author = models.ForeignKey(BlogUser, null=True, on_delete=models.CASCADE)
+    author = models.ForeignKey(BlogUser, on_delete=models.CASCADE)
     date = models.DateField(auto_now=True)
-    # image = models.ImageField(upload_to=f"media/files/{author.name}/", null=True)
-    image = models.CharField(max_length=15, null=False)
+    image = models.ImageField(upload_to=up, null=False)
     short_desc = models.CharField(max_length=500)
     main_desc = models.TextField()
     slug = models.SlugField(default="", null=False, db_index=True, blank=True)
