@@ -22,10 +22,10 @@ class SignupView(View):
 
     def post(self, request):
         lf = NewUserForm(data=request.POST, files=request.FILES)
-        print(request.FILES)
 
         if lf.is_valid() and lf:
             user = lf.save()
+            request.session["unc"] = str(user.nickname)
             return redirect(reverse('profile-page', kwargs={'uid': user.nickname}))
         else:
             return render(request, 'user/signup.html', {
