@@ -52,7 +52,7 @@
 	<div class="w-full lg:w-2/5" >
 		<!-- Big profile image for side bar (desktop) -->
         {% if user.image != "" %}
-            <img src="{{ user.image.url }}"  alt="{{ user.nickname }} image"  class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block">
+            <img src="{{ user.image.url }}"  alt="{{ user.nickname }} image" width="80%" class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block">
         {% else %}
             <img src="{% static 'user/unknown.png' %}" width="80%" class="rounded-none lg:rounded-lg shadow-2xl hidden lg:block" alt="{{ user.nickname }}">
         {% endif %}
