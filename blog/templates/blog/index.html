@@ -16,10 +16,13 @@
     </p>
     </section>
     <section id="latest-posts">
-    <h2 class="text-center">Latest Post of My Blog</h2>
+    <h2 class="text-center font-bold">Latest Post of My Blog</h2>
+        <br>
         <ul class="border">
             {% for post in posts %}
-                {% include 'includes/pls.html' %}
+                <br>
+                <div >{% include 'includes/pls.html' %}</div>
+
             {% endfor %}
         </ul>
     </section>

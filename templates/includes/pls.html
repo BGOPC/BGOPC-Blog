@@ -1,8 +1,8 @@
 {% load static %}
 
 <li class="rounded">
-    <article class="post rounded">
-        <a class="rounded  p-4" href="{% url 'post-detail' slug=post.slug %}">
+    <article class="post rounded ">
+        <a class="bg-blue-400 rounded border-solid border-2 border-black p-4" href="{% url 'post-detail' slug=post.slug %}">
             <div class="rounded post_content">
                 <h3>{{ post.title|title }}</h3>
                 <p>{{ post.short_desc }}</p>
