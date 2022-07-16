@@ -2,6 +2,19 @@
     <nav>
         <h1><a href="{% url 'main-page' %}"> BGOPC </a> </h1>
     </nav>
-    <a href="{% url 'posts-page' %}"><b     class="hover:font-bold hover:text-slate-800"> All Posts </b></a>
+    {% if user  != None %}
+    <a href="{% url 'profile-page' uid=user.nickname %}">
+        <div class="flex items-center space-x-4">
+            <img class="w-10 h-10 rounded-full" src="{{ user.image.url }}" alt="">
+            <div class="space-y-1 font-medium dark:text-white">
+                <div>{{ user }}</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">Joined in {{ user.join.date }}</div>
+            </div>
+        </div>
+    </a>
+    {% else %}
+    <a href="{% url 'posts-page' %}"><b class="hover:font-bold hover:text-slate-800"> All Posts </b></a>
+    {% endif %}
+
 
 </header>

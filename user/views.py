@@ -1,3 +1,4 @@
+from tabnanny import check
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
@@ -17,7 +18,8 @@ class SignupView(View):
         lf = NewUserForm()
         return render(request, 'user/signup.html', {
             'lf': lf,
-            'error': None
+            'error': None,
+            'user': None,
         })
 
     def post(self, request):
@@ -41,9 +43,15 @@ class PageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(PageView, self).get_context_data()
         uid = kwargs['uid']
+        request = self.request
+        unc = request.session.get("unc", None)
+        checkuser = None
+        if unc:
+            checkuser = BlogUser.objects.get(nickname=unc)
         user = get_object_or_404(BlogUser, nickname=uid)
         all_posts = Post.objects.filter(author_id=user.id).order_by("date")
         context["user"] = user
+        context["checkuser"] = user == checkuser
         context["posts"] = all_posts
         return context
 
@@ -64,6 +72,7 @@ class NpView(View):
             Postform = NewPostForm(request.POST, request.FILES)
             if Postform.is_valid():
                 NewPost: Post = Postform.save()
+                NewPost.author = BlogUser.objects.get(nickname=unc)
                 return redirect(reverse("post-detail", kwargs={"slug": NewPost.slug}))
             user = get_object_or_404(BlogUser, nickname=unc)
             return render(request, 'user/new_post.html', {"user": user, "form": Postform})
