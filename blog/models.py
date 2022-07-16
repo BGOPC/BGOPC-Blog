@@ -13,7 +13,7 @@ class Post(models.Model):
     title = models.CharField(max_length=150)
     author = models.ForeignKey(BlogUser, on_delete=models.CASCADE)
     date = models.DateField(auto_now_add=True)
-    image = models.ImageField(upload_to=up, null=False)
+    image = models.ImageField(upload_to=up, null=False, blank=False)
     short_desc = models.CharField(max_length=500)
     main_desc = models.TextField()
     slug = models.SlugField(default="", null=False, db_index=True, blank=True)

@@ -1,7 +1,6 @@
 from django import forms
 from .models import BlogUser
 from blog.models import Post
-from ckeditor.widgets import CKEditorWidget
 
 
 class NewUserForm(forms.ModelForm):
@@ -39,9 +38,25 @@ class LoginForm(forms.Form):
 
 
 class NewPostForm(forms.ModelForm):
-    main_desc = forms.CharField(widget=CKEditorWidget(attrs={}), label="")
-    image = forms.CharField(max_length=15)
-    short_desc = forms.CharField(max_length=500)
+    title = forms.CharField(max_length=150, widget=forms.TextInput(
+     attrs={
+         "class": """leading-none w-full text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 
+                  bg-gray-800 rounded """
+     }
+    ))
+    main_desc = forms.CharField(widget=forms.Textarea(attrs={
+        "class":"h-40 text-base leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-800 border-0 rounded"
+    }), label="")
+    image = forms.ImageField(widget=forms.ClearableFileInput(attrs={"class": """text-gray-50 p-3 focus:outline-none 
+                                                                             focus:border-blue-700 mt-4 border-0 
+                                                                             bg-gray-800 rounded"""})
+                             )
+    short_desc = forms.CharField(max_length=500, widget=forms.TextInput(
+     attrs={
+         "class": """leading-none text-gray-50 p-3 focus:outline-none
+                  focus:border-blue-700 mt-4 border-0 bg-gray-800 rounded"""
+     }
+    ))
 
     class Meta:
         model = Post

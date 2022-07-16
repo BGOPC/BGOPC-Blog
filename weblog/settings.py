@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'theme',
     'copyright',
     'django_browser_reload',
-    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -146,7 +145,6 @@ TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
-CKEDITOR_UPLOAD_PATH = "ckeditor/"
 
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 if platform in ("linux", "linux2"):
