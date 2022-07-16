@@ -11,7 +11,7 @@ def up(instance, file):
 
 class Post(models.Model):
     title = models.CharField(max_length=150)
-    author = models.ForeignKey(BlogUser, on_delete=models.CASCADE)
+    author = models.ForeignKey(BlogUser, on_delete=models.CASCADE, null=True)
     date = models.DateField(auto_now_add=True)
     image = models.ImageField(upload_to=up, null=False, blank=False)
     short_desc = models.CharField(max_length=500)

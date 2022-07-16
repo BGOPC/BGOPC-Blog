@@ -73,6 +73,7 @@ class NpView(View):
             if Postform.is_valid():
                 NewPost: Post = Postform.save()
                 NewPost.author = BlogUser.objects.get(nickname=unc)
+                NewPost.save()
                 return redirect(reverse("post-detail", kwargs={"slug": NewPost.slug}))
             user = get_object_or_404(BlogUser, nickname=unc)
             return render(request, 'user/new_post.html', {"user": user, "form": Postform})

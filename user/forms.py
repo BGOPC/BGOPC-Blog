@@ -45,7 +45,8 @@ class NewPostForm(forms.ModelForm):
      }
     ))
     main_desc = forms.CharField(widget=forms.Textarea(attrs={
-        "class":"h-40 text-base leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 bg-gray-800 border-0 rounded"
+        "class": "h-40 text-base leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 "
+                 "bg-gray-800 border-0 rounded`"
     }), label="")
     image = forms.ImageField(widget=forms.ClearableFileInput(attrs={"class": """text-gray-50 p-3 focus:outline-none 
                                                                              focus:border-blue-700 mt-4 border-0 

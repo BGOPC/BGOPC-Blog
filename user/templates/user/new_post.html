@@ -18,6 +18,7 @@ New Post
             <hr>
             <br>
             <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class=" items-center">
                     <div class="w-full flex flex-col">`
                         <label class="font-semibold leading-none text-gray-300 text-center">Post Name</label>

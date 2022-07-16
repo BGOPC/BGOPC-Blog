@@ -2,7 +2,6 @@ from django.shortcuts import get_object_or_404, render
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView
 from django.views.generic import DetailView
-from pyrsistent import s
 
 from user.models import BlogUser
 
@@ -30,6 +29,7 @@ class PostsView(ListView):
     template_name = "blog/posts.html"
     model = Post
     context_object_name = 'posts'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         request = self.request
@@ -40,11 +40,13 @@ class PostsView(ListView):
         context['user'] = user
         return context
 
+
 class PostView(DetailView):
     template_name = "blog/post.html"
-    module = Post
+    model = Post
+
     def get_context_data(self, **kwargs):
-        context =  super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         request = self.request
         unc = request.session.get("unc", None)
         user = None
