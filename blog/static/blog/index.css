@@ -86,7 +86,7 @@
 }
 
 #latest-posts li article {
-    width: 99%;
+    width: 100%;
     /*float: left;*/
     text-align: center;
 }
@@ -127,7 +127,7 @@
 .post a:active,
 .post a:hover {
     transform: scale(1.1);
-    background-color: #390281;
+    background-color: #0090ff;
     color: white;
     border-radius: 12px;
 }
@@ -141,6 +141,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 90%;
+    transform-origin: center;
 }
 
 .border {
@@ -149,10 +151,4 @@
     border: black 4px solid;
     outline: white 2px solid;
     box-shadow: rgba(255, 255, 2551) 0 3px 8px 0;
-}
-
-.post a {
-    width: 90%;
-    transform-origin: center;
-    /*box-shadow: 0 0 4px rgba(0,0,0, 0.4);*/
 }

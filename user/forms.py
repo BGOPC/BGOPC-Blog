@@ -1,6 +1,7 @@
 from django import forms
 from .models import BlogUser
 from blog.models import Post
+from django.shortcuts import get_object_or_404
 
 
 class NewUserForm(forms.ModelForm):
@@ -35,6 +36,11 @@ class NewUserForm(forms.ModelForm):
 class LoginForm(forms.Form):
     nickname = forms.CharField()
     password = forms.CharField()
+
+    def check_valid(self):
+        user = get_object_or_404(BlogUser, nickname=self.nickname)
+        password = user.password == self.password
+        return password
 
 
 class NewPostForm(forms.ModelForm):

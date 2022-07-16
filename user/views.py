@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse
 from django.views import View
 from django.views.generic.base import TemplateView
@@ -8,9 +8,18 @@ from .forms import *
 
 
 # Create your views here.
-def login(request):
-    return render(request, 'user/login.html')
+def red(request):
+    unc = request.session.get("unc", None)
+    if unc:
+        user = get_object_or_404(BlogUser, nickname=unc)
+        return redirect(reverse("profile-page", kwargs={'uid':unc}))
+    return redirect(reverse("login"))
+class LoginView(View):
+    def get(self):
+        pass
 
+    def post(self):
+        pass
 
 class SignupView(View):
     def get(self, request):
