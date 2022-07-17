@@ -14,9 +14,7 @@ import os
 from pathlib import Path
 from django.core.management.commands.runserver import Command as runserver
 from sys import platform
-import django_heroku
 
-django_heroku.settings(locals()) 
 runserver.default_port = "8000"
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
