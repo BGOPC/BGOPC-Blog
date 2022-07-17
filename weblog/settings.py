@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-9evl$8qf2(t-@=ajl&2pm3pu(z1&6!5l1ed5n=ex^1aya6q+u5
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    ''
+    'bgopc-blog.herokuapp.com'
 ]
 
 # Application definition
