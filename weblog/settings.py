@@ -70,12 +70,13 @@ PASSWORD_HASHERS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://bgopc-blog.herokuapp.com/",
-    "https://bgopc-blog.herokuapp.com/profile/",
-    "https://bgopc-blog.herokuapp.com/profile/signup",
-    "https://bgopc-blog.herokuapp.com/profile/login",
-    "https://bgopc-blog.herokuapp.com/profile/upload/",
-    "https://bgopc-blog.herokuapp.com/admin/",
+    "https://*.bgopc-blog.herokuapp.com/",
+    "https://*.bgopc-blog.herokuapp.com/",
+    "https://*.bgopc-blog.herokuapp.com/profile/",
+    "https://*.bgopc-blog.herokuapp.com/profile/signup",
+    "https://*.bgopc-blog.herokuapp.com/profile/login",
+    "https://*.bgopc-blog.herokuapp.com/profile/upload/",
+    "https://*.bgopc-blog.herokuapp.com/admin/",
 ]
 
 ROOT_URLCONF = 'weblog.urls'
