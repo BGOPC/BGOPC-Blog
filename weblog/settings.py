@@ -69,6 +69,10 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.ScryptPasswordHasher',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://bgopc-blog.herokuapp.com/",
+]
+
 ROOT_URLCONF = 'weblog.urls'
 
 TEMPLATES = [
