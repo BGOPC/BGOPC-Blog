@@ -10,16 +10,40 @@ from .forms import *
 # Create your views here.
 def red(request):
     unc = request.session.get("unc", None)
-    if unc:
+    if not unc in ("", " ", None):
         user = get_object_or_404(BlogUser, nickname=unc)
-        return redirect(reverse("profile-page", kwargs={'uid':unc}))
+        return redirect(reverse('profile-page', kwargs={'uid': unc}))
     return redirect(reverse("login"))
-class LoginView(View):
-    def get(self):
-        pass
 
-    def post(self):
-        pass
+
+class LoginView(View):
+    def get(self, request):
+        Lf = LoginForm()
+        return render(request, "user/login.html", {
+            "lf": Lf,
+            "user": None
+        })
+
+    def post(self, request):
+        Lf = LoginForm(request.POST)
+        print(request.POST)
+        if Lf.is_valid() and Lf.check_valid(request.POST["nickname"], request.POST["password"]):
+            request.session["unc"] = request.POST["nickname"]
+            return redirect(reverse("profile-page", kwargs={'uid': request.POST["nickname"]}))
+        return render(request, "user/login.html", {
+            "lf": Lf,
+            "user": None
+        })
+
+class LogoutView(View):
+    def get(self, request):
+        try:
+            del request.session["unc"]
+        except:
+            pass
+
+        return redirect(reverse('main-page'))
+
 
 class SignupView(View):
     def get(self, request):

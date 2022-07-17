@@ -19,11 +19,7 @@ body {
 }
 #all-posts ul{
     list-style: none;
-}
-#all-posts li{
-    background-color: #8a918f;
-    margin-bottom: 5px;
-    border-radius: 15px;
+    border-radius: 18px;
 }
 .post a {
     transform-origin: center;

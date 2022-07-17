@@ -34,12 +34,20 @@ class NewUserForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    nickname = forms.CharField()
-    password = forms.CharField()
+    nickname = forms.CharField(label="", max_length=255,widget=
+        forms.TextInput(attrs={
+            "class": "w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600",
+            "placeholder": "NickName"
+        }))
+    password = forms.CharField(label="", max_length=255,widget=forms.PasswordInput(attrs={
+        "class": "w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600",
+        "placeholder": "Password"
+        }
+    ))
 
-    def check_valid(self):
-        user = get_object_or_404(BlogUser, nickname=self.nickname)
-        password = user.password == self.password
+    def check_valid(self, nickname, password):
+        user = get_object_or_404(BlogUser, nickname=nickname)
+        password = user.password == password
         return password
 
 
