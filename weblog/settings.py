@@ -30,12 +30,14 @@ SECRET_KEY = 'django-insecure-9evl$8qf2(t-@=ajl&2pm3pu(z1&6!5l1ed5n=ex^1aya6q+u5
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'bgopc-blog.herokuapp.com'
+    'bgopc-blog.herokuapp.com',
+    '127.0.0.1',
 ]
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -52,6 +54,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -142,10 +145,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
-    # BASE_DIR / 'static/',
+    # BASE_DIR / "static",
 ]
 MEDIA_ROOT = BASE_DIR / 'files'
 MEDIA_URL = 'files/'
