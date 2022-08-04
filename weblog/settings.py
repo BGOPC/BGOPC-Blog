@@ -10,28 +10,25 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-import os
 from pathlib import Path
-
+import os
 from sys import platform
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-9evl$8qf2(t-@=ajl&2pm3pu(z1&6!5l1ed5n=ex^1aya6q+u5'
+SECRET_KEY = 'django-insecure-#@5@5zbykmff1-4cqj2r0$==*o+t=!u@sww-lrc*x_46i=mb5z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'bgopc-blog.herokuapp.com',
-    '127.0.0.1',
-]
+ALLOWED_HOSTS = []
+
 
 # Application definition
 
@@ -59,31 +56,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.Argon2PasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-    'django.contrib.auth.hashers.ScryptPasswordHasher',
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    "https://*.bgopc-blog.herokuapp.com/",
-    "https://*.bgopc-blog.herokuapp.com/",
-    "https://*.bgopc-blog.herokuapp.com/profile/",
-    "https://*.bgopc-blog.herokuapp.com/profile/signup",
-    "https://*.bgopc-blog.herokuapp.com/profile/login",
-    "https://*.bgopc-blog.herokuapp.com/profile/upload/",
-    "https://*.bgopc-blog.herokuapp.com/admin/",
-]
-
 ROOT_URLCONF = 'weblog.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'templates'],
-
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -98,6 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'weblog.wsgi.application'
 
+
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -107,6 +86,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -126,6 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -137,14 +118,13 @@ USE_I18N = True
 
 USE_TZ = True
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = [
-    # BASE_DIR / "static",
-]
+STATICFILES_DIRS = []
 MEDIA_ROOT = BASE_DIR / 'files'
 MEDIA_URL = 'files/'
 # Default primary key field type
@@ -154,7 +134,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 TAILWIND_APP_NAME = 'theme'
 INTERNAL_IPS = [
     "127.0.0.1",
-    "https://bgopc-blog.herokuapp.com"
 ]
 
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
