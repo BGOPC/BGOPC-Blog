@@ -58,6 +58,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://bgopc-blog.herokuapp.com/',
+    'https://*.bgopc-blog.herokuapp.com/*'
+]
+
 ROOT_URLCONF = 'weblog.urls'
 
 TEMPLATES = [
