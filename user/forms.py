@@ -34,12 +34,17 @@ class NewUserForm(forms.ModelForm):
 
 
 class LoginForm(forms.Form):
-    nickname = forms.CharField(label="", max_length=255,widget=
+    nickname = forms.CharField(label="", error_messages={
+               'required': 'Please enter your nickname'
+                },max_length=255,widget=
         forms.TextInput(attrs={
             "class": "w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600",
             "placeholder": "NickName"
         }))
-    password = forms.CharField(label="", max_length=255,widget=forms.PasswordInput(attrs={
+    password = forms.CharField(label="",
+                               error_messages={
+               'required': 'Password is required'
+                }, max_length=255,widget=forms.PasswordInput(attrs={
         "class": "w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600",
         "placeholder": "Password"
         }
@@ -52,13 +57,17 @@ class LoginForm(forms.Form):
 
 
 class NewPostForm(forms.ModelForm):
-    title = forms.CharField(max_length=150, widget=forms.TextInput(
+    title = forms.CharField(max_length=150,error_messages={
+               'required': 'Please enter title for post'
+                }, widget=forms.TextInput(
      attrs={
          "class": """leading-none w-full text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 border-0 
                   bg-gray-800 rounded """
      }
     ))
-    main_desc = forms.CharField(widget=forms.Textarea(attrs={
+    main_desc = forms.CharField(error_messages={
+               'required': 'You Should Have an story'
+                },widget=forms.Textarea(attrs={
         "class": "h-40 text-base leading-none text-gray-50 p-3 focus:outline-none focus:border-blue-700 mt-4 "
                  "bg-gray-800 border-0 rounded`"
     }), label="")
@@ -66,7 +75,9 @@ class NewPostForm(forms.ModelForm):
                                                                              focus:border-blue-700 mt-4 border-0 
                                                                              bg-gray-800 rounded"""})
                              )
-    short_desc = forms.CharField(max_length=500, widget=forms.TextInput(
+    short_desc = forms.CharField(max_length=500,error_messages={
+               'required': 'This is a short view about your story so you have to provide something meaningful'
+                }, widget=forms.TextInput(
      attrs={
          "class": """leading-none text-gray-50 p-3 focus:outline-none
                   focus:border-blue-700 mt-4 border-0 bg-gray-800 rounded"""
