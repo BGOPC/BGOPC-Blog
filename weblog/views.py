@@ -1,6 +1,7 @@
-from django.shortcuts import render
-from django.template import RequestContext
+from django.template import loader
+from django.http import HttpResponseNotFound
 
 
 def handler404(request, exception):
-    return render(request, '404.html', status=404)
+    content = loader.render_to_string('404.html', {}, request)
+    return HttpResponseNotFound(content)
