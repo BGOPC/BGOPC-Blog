@@ -1,3 +1,4 @@
+{% load static %}
 <header id="navbar">
     <nav>
         <h1><a href="{% url 'main-page' %}"> BGOPC </a> </h1>
@@ -14,6 +15,7 @@
     </a>
     {% else %}
     <a href="{% url 'posts-page' %}"><b class="hover:font-bold hover:text-slate-800"> All Posts </b></a>
+    <a href="{% url 'login' %}"><img class="w-10 h-10 rounded-full" src="{% static 'user/unknown.png' %}" alt="Blank Avatar"></a>
     {% endif %}
 
 
