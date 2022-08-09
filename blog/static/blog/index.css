@@ -151,3 +151,40 @@
     outline: white 2px solid;
     box-shadow: rgba(255, 255, 2551) 0 3px 8px 0;
 }
+
+.icons {
+    display: flex;
+    column-gap: 25px;
+}
+.icon {
+    width: 60px;
+    height: 60px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 30px;
+    /* color: white; */
+    border-radius: 50%;
+    outline: white 2px solid;
+    transition-property: outline-offset, outline-color, background-color;
+    transition-duration: .25s;
+}
+.icon:hover{
+    outline-offset: 4px;
+}
+
+.icon:hover i{
+    animation: shake 0.25s;
+}
+
+.icon--item:hover{
+    /* background-color: #2ea; */
+    outline-color: #2ea;
+}
+@keyframes shake {
+    10%{transform: rotate(15deg);}
+    20%{transform: rotate(-15deg);}
+    30%{transform: rotate(15deg);}
+    40%{transform: rotate(-15deg);}
+}
