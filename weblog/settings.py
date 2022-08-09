@@ -30,8 +30,7 @@ DEBUG = not True
 ALLOWED_HOSTS = [
     'bgopc-blog.herokuapp.com'
 ]
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+
 
 # Application definition
 
