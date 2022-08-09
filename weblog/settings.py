@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#@5@5zbykmff1-4cqj2r0$==*o+t=!u@sww-lrc*x_46i=mb5z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not True
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'bgopc-blog.herokuapp.com'
@@ -50,7 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
