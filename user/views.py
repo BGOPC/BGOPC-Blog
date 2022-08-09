@@ -26,7 +26,6 @@ class LoginView(View):
 
     def post(self, request):
         Lf = LoginForm(request.POST)
-        print(request.POST)
         if Lf.is_valid() and Lf.check_valid(request.POST["nickname"], request.POST["password"]):
             request.session["unc"] = request.POST["nickname"]
             return redirect(reverse("profile-page", kwargs={'uid': request.POST["nickname"]}))
@@ -59,6 +58,7 @@ class SignupView(View):
 
         if lf.is_valid() and lf:
             user = lf.save()
+            print(user.nickname, user)
             request.session["unc"] = str(user.nickname)
             return redirect(reverse('profile-page', kwargs={'uid': user.nickname}))
         else:

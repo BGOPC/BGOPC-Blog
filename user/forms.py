@@ -52,8 +52,8 @@ class LoginForm(forms.Form):
 
     def check_valid(self, nickname, password):
         user = get_object_or_404(BlogUser, nickname=nickname)
-        password = user.password == password
-        return password
+        st = user.password == password
+        return st
 
 
 class NewPostForm(forms.ModelForm):
