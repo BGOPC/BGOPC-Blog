@@ -58,7 +58,6 @@ class SignupView(View):
 
         if lf.is_valid() and lf:
             user = lf.save()
-            print(user.nickname, user)
             request.session["unc"] = str(user.nickname)
             return redirect(reverse('profile-page', kwargs={'uid': user.nickname}))
         else:
